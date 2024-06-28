@@ -102,18 +102,18 @@ setLegend(
     )
 
 
-setSolids([])
+setSolids([player, Platform])
 setBackground("b")
 let level = 0
 const levels = [
     map`
-p.........
 ..........
 ..........
+.a........
+......aa..
+...aa.....
 ..........
-..........
-..........
-..........
+.p........
 ggfgfgfgfg`
 ]
 
@@ -121,9 +121,9 @@ setMap(levels[level])
 setPushables({
     [player]: []
 })
-// onInput("s", () => {
-//     getFirst(player).y += 1
-// })
+onInput("s", () => {
+    tick()
+})
 // onInput("w", () => {
 //     getFirst(player).y -= 1
 // })
@@ -147,14 +147,18 @@ class coords{
     }
 }
 
-const getCoordinates(sprite){
- return coords(sprite);
+function getCoordinates(sprite){
+    return coords(sprite);
 }
 function jump(distance){
     for (let i = 0; i < distance; i++) {
-        getFirst(player).y -= 1
+      setTimeout(function() {getFirst(player).y -= 1}, 100);
     }
 }
-// while (true) {
-//     getFirst(player).y += 1
-// }
+function tick(){
+    
+    if(getCoordinates(player) ) {
+    }
+    getFirst(player).y += 1 
+}
+setInterval(tick, 200)
